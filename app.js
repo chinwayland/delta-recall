@@ -92,3 +92,11 @@ if(context?.registerTool){
   register({name:'reveal_practice_answer',description:'Reveal the current flashcard answer for self-checking. Does not grade or save a rating.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:false},execute:(input)=>{validate(input);if(!data.session.queue.length)throw new Error('No active card');reveal();return {revealed:true,id:data.session.queue[0]};}});
   window.addEventListener('pagehide',()=>lifetime.abort(),{once:true});
 }
+
+// Export is initiated only by the user; the local app continues to work as before.
+$('#export-progress').onclick=()=>{
+  const state={version:1,stats:data.stats,session:data.session?{...data.session,undo:null}:null};
+  const blob=new Blob([JSON.stringify({format:'delta-recall-backup',exportedAt:new Date().toISOString(),state},null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob),link=document.createElement('a');
+  link.href=url;link.download='delta-recall-progress-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+};

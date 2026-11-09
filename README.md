@@ -37,3 +37,9 @@ The `gh-pages` branch contains the contents of `dist/`. GitHub Pages serves that
 ## Content
 
 Prompts and examples are original practice material. They are not a reproduction of a candidate script or official past paper. References appear in the app. It is independent study material, not endorsed by Cambridge. Pronunciation examples describe possible realizations and note accent conditions where relevant.
+
+## Account sync
+
+Use the signed-in version at https://delta-recall-sync.wintec-at-ji-0331.chatgpt.site to resume across devices with the same ChatGPT account.
+
+To bring existing browser progress across, choose **Export progress** in this original app. In the signed-in app, choose **References & privacy → Import existing progress** and select the JSON file. Repeat on each previously used device. Import keeps the newer review record for each card without adding duplicate reviews. The original app remains local-only.

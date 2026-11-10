@@ -1,45 +1,33 @@
 # DELTA Recall
 
-A focused, responsive flashcard app for DELTA Module One practice. The 60 original cards target language analysis, learning principles, connected speech, terminology, test evaluation and answer development.
+The latest account-synced app source is in **[synced-app/](synced-app/)**. This version saves ratings, review dates, the current card and typed drafts to a signed-in account. It includes the complete application, the 60-card deck, dependency lockfile, server routes, database schema and migrations, build tooling and tests.
 
-## Practice
+## Versions
 
-Start with a ten-card focus mix, or select a topic. Try an answer, reveal the model, check the key points and rate your recall. Ratings are self-assessments, not automated exam scores.
+| Version | Source | Published app |
+| --- | --- | --- |
+| Latest — account sync | [synced-app/](synced-app/) | [Open signed-in app](https://delta-recall-sync.wintec-at-ji-0331.chatgpt.site) |
+| Original — local progress | [dist/](dist/) and the root package/test files | [Open original app](https://chinwayland.github.io/delta-recall/) |
 
-- **Again:** revisit later in the current session; due in ten minutes if the session is left.
-- **Hard:** review tomorrow.
-- **Got it:** review in 1, 3, 7, 14, then 30 days after successive due recalls. Early extra practice does not advance an established interval.
+GitHub Pages continues to serve the `gh-pages` branch. Adding the synced source here does not change that deployment. The signed-in app is hosted separately through ChatGPT Sites.
 
-The last rating can be undone. Progress and the current session are saved locally in the browser. No accounts, analytics, remote answer submission or cross-device synchronization.
+## Run or migrate the latest version
 
-## Run locally
-
-Serve `dist/` with any static HTTP server. For example:
-
-```sh
-python3 -m http.server 8765 --directory dist
-```
-
-Then open `http://localhost:8765`. No build or dependency installation is required.
-
-## Test
-
-With a recent Node.js installation:
+Start with [MIGRATION.md](MIGRATION.md), then read the [synced app README](synced-app/README.md). With Node.js 22.13 or newer, run these commands from `synced-app/`:
 
 ```sh
+npm ci
 npm test
 ```
 
-## Hosting
+The app also needs a D1 database and authentication. Follow the migration guide before publishing under another ChatGPT account or hosting provider.
 
-The `gh-pages` branch contains the contents of `dist/`. GitHub Pages serves that branch from its root. All asset paths are relative so the app works beneath a repository path.
+[SOURCE_VERSION.json](synced-app/SOURCE_VERSION.json) identifies the exact Sites source commit copied into this repository. The synced source files are a snapshot of the deployed version.
 
-## Content
+## What is not backed up here
 
-Prompts and examples are original practice material. They are not a reproduction of a candidate script or official past paper. References appear in the app. It is independent study material, not endorsed by Cambridge. Pronunciation examples describe possible realizations and note accent conditions where relevant.
+This repository contains code and schema, not live progress records, local databases, browser state, credentials or installed dependencies. Keep progress backups private. Moving the source alone does not transfer a ChatGPT account or its saved data.
 
-## Account sync
+## Original local app
 
-Use the signed-in version at https://delta-recall-sync.wintec-at-ji-0331.chatgpt.site to resume across devices with the same ChatGPT account.
-
-To bring existing browser progress across, choose **Export progress** in this original app. In the signed-in app, choose **References & privacy → Import existing progress** and select the JSON file. Repeat on each previously used device. Import keeps the newer review record for each card without adding duplicate reviews. The original app remains local-only.
+The root `package.json` and `tests/` belong to the original local app. Serve `dist/` with a static HTTP server to run it, or use the GitHub Pages link above. Its Export progress button downloads a browser-local JSON backup that the synced app can import.
